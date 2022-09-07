@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = "kata-temp"
-    s.version     = "0.0.3"
+    s.version     = "0.0.4"
     s.summary     = "Convert!"
     s.description = "temperature convertion gem"
     s.authors     = ["Oli Japa"]
