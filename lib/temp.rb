@@ -1,6 +1,6 @@
 class Convert
 
-    def to_kelvin(number,scale)
+    def self.to_kelvin(number,scale)
         case scale
             when "celsius"
                 number = number.to_f + 273.16
@@ -19,7 +19,7 @@ class Convert
         end
     end
     
-    def to_fahrenheit(number,scale)
+    def self.to_fahrenheit(number,scale)
         case scale
             when "celsius"
                 number = (number.to_f * 9/5) + 32
@@ -38,7 +38,7 @@ class Convert
         end
     end
 
-    def to_celsius(number,scale)
+    def self.to_celsius(number,scale)
         case scale
             when "celsius"
                 number = number.to_f
