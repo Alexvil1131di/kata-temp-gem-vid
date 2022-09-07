@@ -18,3 +18,29 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY}}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # need all the commits
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      - uses: actions/setup-node@v2
+      - name: Configure Git
+        run: |
+          git config --local user.email "olialexander1131@gmail.com"
+          git config --local user.name "Oli Japa"
+      - name: Bump and Commit
+        run: |
+          yarn add standard-version
+          yarn run standard-version
+          git push --follow-tags
+      - name: Push to rubygems.org
+        run: |
+          gem build *.gemspec
+          gem push *.gem
